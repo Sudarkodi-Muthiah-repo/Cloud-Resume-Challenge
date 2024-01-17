@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<!--
+	Aerial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>My website</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+</head>
+
+<body class="is-preload">
+	<div id="wrapper">
+		<div id="bg"></div>
+		<div id="overlay"></div>
+		<div id="main">
+
+			<!-- Header -->
+			<header id="header">
+				<h1>Sudarkodi Muthiah</h1>
+				<p>Project Leader &nbsp;&bull;&nbsp; Certified AWS Solution Architect Associate &nbsp;&bull;&nbsp; Cloud
+					Enthusiast</p>
+				<nav>
+					<ul>
+						<li><a href="https://www.credly.com/users/sudarkodi-muthiah/badges"
+								class="icon brands fa-skyatlas"><span class="label">Credly</span></a>
+						</li>
+						<li><a href="https://www.linkedin.com/in/sudarkodi-muthiah/" target="_blank"
+								class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						<li><a href="https://github.com/Sudarkodi-Muthiah-repo" target="_blank"
+								class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<li><a href="mailto:sudarkodimuthiah22@gmail.com" class="icon solid fa-envelope"><span
+									class="label">Email</span></a></li>
+					</ul>
+				</nav>
+			</header>
+
+			<!-- Footer -->
+			<footer id="footer">
+				You are visitor no: <span class="counter-number">Loading...</span>
+			</footer>
+
+		</div>
+	</div>
+	<script>
+		window.onload = function () { document.body.classList.remove('is-preload'); }
+		window.ontouchmove = function () { return false; }
+		window.onorientationchange = function () { document.body.scrollTop = 0; }
+	</script>
+	<script>
+		const counter = document.querySelector(".counter-number");
+
+		async function updateCounter() {
+			try {
+				let response = await fetch("https://eyhi6cx3fnwdkr7v3mgcci6kfu0hyqfe.lambda-url.us-west-1.on.aws/");
+				let data = await response.json();
+				counter.textContent = data; // Update the content of the counter element
+			} catch (error) {
+				console.error("Error updating counter:", error);
+				counter.textContent = "Error"; // Display an error message
+			}
+		}
+
+		// Call updateCounter when the page loads
+		document.addEventListener("DOMContentLoaded", () => {
+			updateCounter();
+		});
+
+	</script>
+</body>
+
+</html>
