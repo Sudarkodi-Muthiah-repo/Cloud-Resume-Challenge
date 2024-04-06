@@ -1,4 +1,4 @@
-name: Upload static files to S3
+name: Upload Website files to S3
 
 on:
   push:
@@ -7,10 +7,13 @@ on:
 
 jobs:
   deploy:
+    name: Deploy to AWS S3
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - uses: jakejarvis/s3-sync-action@master
+      - name: Checkout repository
+        uses: actions/checkout@master
+      - name: S3 sync
+        uses: jakejarvis/s3-sync-action@master
         with:
           args: --follow-symlinks --delete --exclude '.git/*' --exclude '.github/*'
         env:
